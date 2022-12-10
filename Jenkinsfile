@@ -9,6 +9,10 @@ pipeline{
         PATH = "$TF_HOME:$PATH"
     }
     stages {
+              stage('Git checkout') {
+           steps{
+                git 'https://github.com/munir94/tf-cicd'
+           }
     
         stage('Terraform Init'){
             
