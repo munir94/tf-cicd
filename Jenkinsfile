@@ -23,7 +23,8 @@ pipeline{
                 ), string(credentialsId: 'access_key', variable: 'ARM_ACCESS_KEY')]) {
                         
                         sh """
-                                
+                        sh 'az login --service-principal -u $CLIENT_ID -p $CLIENT_SECRET -t $TENANT_ID'
+                        sh 'az account set -s $AZURE_SUBSCRIPTION_ID'       
                         echo "Initialising Terraform"
                         terraform init -backend-config="access_key=$ARM_ACCESS_KEY"
                         """
